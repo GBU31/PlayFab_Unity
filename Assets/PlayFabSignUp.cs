@@ -13,7 +13,7 @@ public class PlayFabSignUp : MonoBehaviour
     string encryptedPassword;
 
     public void Register() {
-        // Debug.Log(username.text + " "  + Encrypt(userPassword.text) + " " + userEmail.text);
+        ///Debug.Log(username.text + " "  + Encrypt(userPassword.text) + " " + userEmail.text);
         var registerRequest = new RegisterPlayFabUserRequest{Username=username.text, Email=userEmail.text, Password=Encrypt(userPassword.text)};
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnregisterRequestSuccess, OnregisterRequestFailure);
     }
