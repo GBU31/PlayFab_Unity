@@ -4,15 +4,21 @@ using UnityEngine;
 using PlayFab;
 using UnityEngine.SceneManagement;
 using PlayFab.ClientModels;
+using UnityEngine.UI;
+
 
 public class LB : MonoBehaviour
 {
+    public int playerScore;
+    public Text lbinfo;
+
     public void GetMatchScene(){
         SceneManager.LoadScene(2);
 
     }
-
-    public void SubmitScore(int playerScore) {
+    
+    public void SubmitScore() {
+    Debug.Log("test1");
     PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest {
         Statistics = new List<StatisticUpdate> {
             new StatisticUpdate {
@@ -21,7 +27,29 @@ public class LB : MonoBehaviour
             }
         }
     }, result=> OnStatisticsUpdated(result), FailureCallback);
+
+    
 }
+public void GetLeaderboard() {
+        var request = new GetLeaderboardRequest{
+            StatisticName = "HighScore",
+            StartPosition = 0,
+            MaxResultsCount = 10,
+
+        };
+        PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, FailureCallback);
+    }
+
+    void OnLeaderboardGet(GetLeaderboardResult result) {
+        foreach (var item in result.Leaderboard){
+            string info = item.Position + " " + item.PlayFabId + " " + item.StatValue;
+            lbinfo.text = info;
+            Debug.Log(info);
+        }
+    }
+
+
+
 
 private void OnStatisticsUpdated(UpdatePlayerStatisticsResult updateResult) {
     Debug.Log("Successfully submitted high score");

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GetMatch.unity
     guid: 65d6a14df4a57a207bef12efb4466498
+  - enabled: 1
+    path: Assets/Login.unity
+    guid: 64ba52577a0885fc89495a2f14424170
   m_configObjects: {}
