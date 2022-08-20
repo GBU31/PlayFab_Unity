@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using PlayFab;
 using UnityEngine.SceneManagement;
@@ -41,11 +42,15 @@ public void GetLeaderboard() {
     }
 
     void OnLeaderboardGet(GetLeaderboardResult result) {
+        // var allinfo = new List<string>();  
         foreach (var item in result.Leaderboard){
-            string info = item.Position + " " + item.PlayFabId + " " + item.StatValue;
-            lbinfo.text = info;
+            string info= item.Position + " " + item.PlayFabId + " " + item.StatValue;
+            // allinfo.Add(info);
+            lbinfo.text += "\n" + info;
+            
             Debug.Log(info);
         }
+        // allinfo.ForEach(Debug.Log);
     }
 
 
