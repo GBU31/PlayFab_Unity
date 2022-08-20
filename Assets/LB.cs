@@ -10,8 +10,10 @@ using UnityEngine.UI;
 
 public class LB : MonoBehaviour
 {
-    public int playerScore;
+    public Text playerScore;
     public Text lbinfo;
+    
+
 
     public void GetMatchScene(){
         SceneManager.LoadScene(2);
@@ -24,7 +26,8 @@ public class LB : MonoBehaviour
         Statistics = new List<StatisticUpdate> {
             new StatisticUpdate {
                 StatisticName = "HighScore",
-                Value = playerScore
+                Value = Int32.Parse(playerScore.text)
+                
             }
         }
     }, result=> OnStatisticsUpdated(result), FailureCallback);
